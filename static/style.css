@@ -1,175 +1,179 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ochaud Even.ci</title>
-    <link rel="stylesheet" href="/static/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="page">
-        <div class="header">
-            <div class="logo">Ochaud Even.ci</div>
-            <p class="tagline">Invitations d’exception</p>
-        </div>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        <div class="card" id="mainCard">
-            <div class="gold-line"></div>
-            
-            <form method="POST" action="/create" id="inviteForm">
-                <div class="form-group">
-                    <label>Type d’événement</label>
-                    <select name="event_type" id="eventType" required>
-                        <option value="">— Sélectionnez —</option>
-                        <option value="romantique">Rendez-vous Romantique</option>
-                        <option value="mariage">Mariage</option>
-                        <option value="anniversaire">Anniversaire</option>
-                        <option value="bapteme">Baptême</option>
-                        <option value="autre">Autre événement</option>
-                    </select>
-                </div>
+body {
+    min-height: 100vh;
+    background: #0f0f0f;
+    background-image: 
+        radial-gradient(ellipse at top, #1a1508 0%, transparent 60%),
+        radial-gradient(ellipse at bottom, #1a1008 0%, transparent 60%);
+    font-family: 'Cormorant Garamond', serif;
+    padding: 50px 16px;
+    color: #e8d9b5;
+}
 
-                <div id="dynamicFields"></div>
+.page {
+    max-width: 540px;
+    margin: 0 auto;
+}
 
-                <button type="submit" class="btn" id="submitBtn" disabled>
-                    Créer l’invitation
-                </button>
-            </form>
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+}
 
-            <div class="footer-note">
-                Version gratuite · 2 invitations / mois
-                <a href="/pro">Passer en Pro</a>
-            </div>
-        </div>
-    </div>
+.logo {
+    font-family: 'Cinzel', serif;
+    font-size: 2.4rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, #f5e6c8, #d4af37, #f5e6c8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+}
 
-    <script>
-        const configs = {
-            romantique: {
-                accent: "#c9a227",
-                fields: [
-                    {name:"destinataire", label:"Prénom de la personne", placeholder:"Ex : Aya", required:true},
-                    {name:"titre", label:"Titre de l’invitation", placeholder:"Ex : Un moment rien que pour nous", required:true},
-                    {name:"date", label:"Date", type:"date", required:true},
-                    {name:"heure", label:"Heure", type:"time", required:true},
-                    {name:"lieu", label:"Lieu", placeholder:"Ex : Restaurant Le Petit Jardin", required:true},
-                    {name:"details", label:"Activités prévues", type:"textarea", placeholder:"Ex : Dîner puis balade..."},
-                    {name:"message", label:"Petit mot doux", type:"textarea", placeholder:"Ex : J’ai hâte de te voir..."},
-                    {name:"photo_url", label:"Lien photo (optionnel)", type:"url"},
-                    {name:"musique_url", label:"Lien musique (optionnel)", type:"url"}
-                ]
-            },
-            mariage: {
-                accent: "#d4af37",
-                fields: [
-                    {name:"destinataire", label:"Noms des mariés", placeholder:"Ex : Aya & Kouassi", required:true},
-                    {name:"titre", label:"Titre", placeholder:"Ex : Nous nous marions", required:true},
-                    {name:"date", label:"Date du mariage", type:"date", required:true},
-                    {name:"heure", label:"Heure", type:"time", required:true},
-                    {name:"lieu", label:"Lieu de la cérémonie", placeholder:"Ex : Église / Mairie", required:true},
-                    {name:"details", label:"Programme", type:"textarea"},
-                    {name:"message", label:"Message aux invités", type:"textarea"},
-                    {name:"photo_url", label:"Photo (optionnel)", type:"url"}
-                ]
-            },
-            anniversaire: {
-                accent: "#c9a227",
-                fields: [
-                    {name:"destinataire", label:"Prénom de la personne", placeholder:"Ex : Junior", required:true},
-                    {name:"titre", label:"Titre", placeholder:"Ex : Joyeux Anniversaire", required:true},
-                    {name:"date", label:"Date", type:"date", required:true},
-                    {name:"heure", label:"Heure", type:"time", required:true},
-                    {name:"lieu", label:"Lieu", placeholder:"Ex : Résidence / Salle", required:true},
-                    {name:"details", label:"Thème / Ambiance", type:"textarea"},
-                    {name:"message", label:"Message", type:"textarea"},
-                    {name:"photo_url", label:"Photo (optionnel)", type:"url"}
-                ]
-            },
-            bapteme: {
-                accent: "#b8860b",
-                fields: [
-                    {name:"destinataire", label:"Prénom de l’enfant", placeholder:"Ex : Ethan", required:true},
-                    {name:"titre", label:"Titre", placeholder:"Ex : Baptême de Ethan", required:true},
-                    {name:"date", label:"Date", type:"date", required:true},
-                    {name:"heure", label:"Heure", type:"time", required:true},
-                    {name:"lieu", label:"Lieu", placeholder:"Ex : Paroisse...", required:true},
-                    {name:"details", label:"Informations", type:"textarea"},
-                    {name:"message", label:"Message", type:"textarea"},
-                    {name:"photo_url", label:"Photo (optionnel)", type:"url"}
-                ]
-            },
-            autre: {
-                accent: "#c9a227",
-                fields: [
-                    {name:"destinataire", label:"Destinataire", placeholder:"Ex : Chers amis", required:true},
-                    {name:"titre", label:"Titre de l’événement", placeholder:"Ex : Soirée / Réunion", required:true},
-                    {name:"date", label:"Date", type:"date", required:true},
-                    {name:"heure", label:"Heure", type:"time"},
-                    {name:"lieu", label:"Lieu", placeholder:"Adresse", required:true},
-                    {name:"details", label:"Détails", type:"textarea"},
-                    {name:"message", label:"Message", type:"textarea"},
-                    {name:"photo_url", label:"Image (optionnel)", type:"url"}
-                ]
-            }
-        };
+.tagline {
+    font-size: 1.15rem;
+    color: #a89060;
+    letter-spacing: 2px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
 
-        function updateForm() {
-            const type = document.getElementById("eventType").value;
-            const container = document.getElementById("dynamicFields");
-            const btn = document.getElementById("submitBtn");
+.card {
+    background: linear-gradient(145deg, #1c1810, #15120b);
+    border-radius: 16px;
+    padding: 40px 32px;
+    border: 1px solid #3d3420;
+    box-shadow: 
+        0 0 0 1px rgba(212, 175, 55, 0.1),
+        0 25px 50px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255, 215, 100, 0.05);
+    position: relative;
+}
 
-            container.innerHTML = "";
+.gold-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+}
 
-            if (!type || !configs[type]) {
-                btn.disabled = true;
-                return;
-            }
+.form-group {
+    margin-bottom: 24px;
+}
 
-            const config = configs[type];
+label {
+    display: block;
+    margin-bottom: 9px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #d4af37;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
 
-            config.fields.forEach(field => {
-                const div = document.createElement("div");
-                div.className = "form-group";
+input, textarea, select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #3d3420;
+    border-radius: 8px;
+    font-size: 1.15rem;
+    font-family: 'Cormorant Garamond', serif;
+    background: #12100a;
+    color: #f0e6d2;
+    transition: all 0.3s ease;
+}
 
-                const label = document.createElement("label");
-                label.textContent = field.label;
-                div.appendChild(label);
+input::placeholder, textarea::placeholder {
+    color: #6b5e45;
+}
 
-                let input;
-                if (field.type === "textarea") {
-                    input = document.createElement("textarea");
-                    input.rows = 3;
-                } else {
-                    input = document.createElement("input");
-                    input.type = field.type || "text";
-                }
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #d4af37;
+    background: #18150e;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
 
-                input.name = field.name;
-                input.placeholder = field.placeholder || "";
-                if (field.required) input.required = true;
+textarea {
+    resize: vertical;
+    min-height: 95px;
+}
 
-                div.appendChild(input);
-                container.appendChild(div);
-            });
+select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23d4af37' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+}
 
-            const themeDiv = document.createElement("div");
-            themeDiv.className = "form-group";
-            themeDiv.innerHTML = `
-                <label>Style de l’invitation</label>
-                <select name="theme">
-                    <option value="royal">Royal</option>
-                    <option value="elegant">Élégant</option>
-                    <option value="classique">Classique</option>
-                    <option value="moderne">Moderne</option>
-                </select>
-            `;
-            container.appendChild(themeDiv);
+.btn {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 16px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #d4af37, #b8860b);
+    color: #1a1508;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
 
-            btn.disabled = false;
-        }
+.btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #e8c547, #d4af37);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+}
 
-        document.getElementById("eventType").addEventListener("change", updateForm);
-    </script>
-</body>
-</html>
+.btn:disabled {
+    background: #3d3420;
+    color: #6b5e45;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.footer-note {
+    text-align: center;
+    margin-top: 32px;
+    font-size: 0.95rem;
+    color: #7a6b4f;
+}
+
+.footer-note a {
+    color: #d4af37;
+    text-decoration: none;
+    margin-left: 8px;
+    font-weight: 500;
+}
+
+.footer-note a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+    .logo {
+        font-size: 1.9rem;
+        letter-spacing: 2px;
+    }
+    .card {
+        padding: 32px 22px;
+    }
+}
