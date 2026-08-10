@@ -6,7 +6,7 @@
 
 body {
     min-height: 100vh;
-    background: linear-gradient(160deg, #f8f4eb 0%, #f0e9d8 50%, #eae1cc 100%);
+    background: linear-gradient(160deg, #f3 indeede6d4 0%, #ebe2cd 45%, #e4d9be 100%);
     font-family: 'Cormorant Garamond', serif;
     padding: 50px 16px;
     color: #3d3420;
@@ -27,26 +27,26 @@ body {
     font-size: 2.5rem;
     font-weight: 600;
     letter-spacing: 3px;
-    color: #9a7b2f;
+    color: #8a6d28;
     margin-bottom: 6px;
 }
 
 .tagline {
     font-size: 1.15rem;
-    color: #a89060;
+    color: #9a7b2f;
     letter-spacing: 2px;
     font-weight: 400;
     text-transform: uppercase;
 }
 
 .card {
-    background: #fffcf5;
+    background: #faf6eb;
     border-radius: 18px;
     padding: 40px 34px;
-    border: 1px solid #e6d9b8;
+    border: 1px solid #d9cba3;
     box-shadow: 
-        0 15px 40px rgba(154, 123, 47, 0.08),
-        0 4px 12px rgba(0,0,0,0.03);
+        0 15px 40px rgba(138, 109, 40, 0.09),
+        0 4px 12px rgba(0,0,0,0.04);
     position: relative;
 }
 
@@ -71,7 +71,7 @@ label {
     font-family: 'Cinzel', serif;
     font-size: 0.82rem;
     font-weight: 500;
-    color: #9a7b2f;
+    color: #8a6d28;
     letter-spacing: 1.5px;
     text-transform: uppercase;
 }
@@ -79,73 +79,6 @@ label {
 input, textarea, select {
     width: 100%;
     padding: 14px 16px;
-    border: 1.5px solid #e6d9b8;
+    border: 1.5px solid #d9cba3;
     border-radius: 10px;
-    font-size: 1.15rem;
-    font-family: 'Cormorant Garamond', serif;
-    background: #fffcf5;
-    color: #3d3420;
-    transition: all 0.25s ease;
-}
-
-input::placeholder, textarea::placeholder {
-    color: #b8a88a;
-}
-
-input:focus, textarea:focus, select:focus {
-    outline: none;
-    border-color: #c9a227;
-    background: #fff;
-    box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.12);
-}
-
-textarea {
-    resize: vertical;
-    min-height: 95px;
-}
-
-select {
-    cursor: pointer;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%239a7b2f' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 16px center;
-    padding-right: 40px;
-}
-
-.btn {
-    display: block;
-    width: 100%;
-    margin-top: 10px;
-    padding: 16px;
-    border: none;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #d4af37, #b8860b);
-    color: #fff;
-    font-family: 'Cinzel', serif;
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn:hover:not(:disabled) {
-    background: linear-gradient(135deg, #e0bc4a, #c9a227);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(184, 134, 11, 0.25);
-}
-
-.btn:disabled {
-    background: #e6d9b8;
-    color: #a89060;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-}
-
-.footer-note {
-    text-align: center;
-    margin-top: 32px;
-    font-size: 0.95
+    font-size: 1.
