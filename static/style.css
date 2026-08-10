@@ -6,90 +6,94 @@
 
 body {
     min-height: 100vh;
-    background: linear-gradient(165deg, #a3a381 0%, #95946f 50%, #8a8965 100%);
+    background: #2f3b2f;
+    background-image: 
+        radial-gradient(ellipse at 20% 20%, rgba(180, 160, 100, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(180, 160, 100, 0.06) 0%, transparent 50%);
     font-family: 'Cormorant Garamond', serif;
-    padding: 50px 16px;
-    color: #3d3420;
+    padding: 40px 16px 60px;
+    color: #e8d9b5;
 }
 
 .page {
-    max-width: 540px;
+    max-width: 580px;
     margin: 0 auto;
 }
 
+/* Header */
 .header {
     text-align: center;
-    margin-bottom: 42px;
+    margin-bottom: 35px;
+}
+
+.crest {
+    margin-bottom: 12px;
+}
+
+.crest-icon {
+    font-size: 2.8rem;
+    color: #d4af37;
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
 }
 
 .logo {
     font-family: 'Cinzel', serif;
-    font-size: 2.6rem;
+    font-size: 2.4rem;
     font-weight: 600;
     letter-spacing: 4px;
     background: linear-gradient(90deg, #f5e6c8, #d4af37, #f5e6c8);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 8px;
-    text-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
 }
 
 .tagline {
     font-size: 1.05rem;
     color: #c9a86c;
-    letter-spacing: 3px;
-    font-weight: 400;
-    text-transform: uppercase;
-    opacity: 0.9;
+    letter-spacing: 1px;
+    font-style: italic;
 }
 
+/* Carte */
 .card {
-    background: linear-gradient(145deg, #3a3428, #2f2a20);
-    border-radius: 18px;
-    padding: 42px 34px;
-    border: 1px solid #4a4332;
-    box-shadow: 
-        0 0 0 1px rgba(212, 175, 55, 0.1),
-        0 25px 40px rgba(0, 0, 0, 0.25),
-        inset 0 1px 0 rgba(255, 215, 120, 0.07);
-    position: relative;
+    background: transparent;
+    padding: 4px;
+    border-radius: 20px;
+    background: linear-gradient(145deg, #d4af37, #8a7020, #d4af37);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
 }
 
-.gold-line {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, #d4af37, transparent);
-    border-radius: 0 0 4px 4px;
-    box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+.card-border {
+    background: #1a1a1a;
+    border-radius: 17px;
+    padding: 36px 30px 28px;
 }
 
+/* Formulaire */
 .form-group {
-    margin-bottom: 24px;
+    margin-bottom: 22px;
 }
 
 label {
     display: block;
     margin-bottom: 9px;
     font-family: 'Cinzel', serif;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: 500;
     color: #d4af37;
-    letter-spacing: 1.8px;
+    letter-spacing: 2px;
     text-transform: uppercase;
+    text-align: center;
 }
 
 input, textarea, select {
     width: 100%;
     padding: 14px 16px;
     border: 1px solid #3d3420;
-    border-radius: 10px;
-    font-size: 1.18rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
     font-family: 'Cormorant Garamond', serif;
-    background: #1a1710;
+    background: #111;
     color: #f0e6d2;
     transition: all 0.3s ease;
 }
@@ -101,16 +105,92 @@ input::placeholder, textarea::placeholder {
 input:focus, textarea:focus, select:focus {
     outline: none;
     border-color: #d4af37;
-    background: #1f1b13;
     box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
 }
 
 textarea {
     resize: vertical;
-    min-height: 95px;
+    min-height: 90px;
 }
 
 select {
     cursor: pointer;
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23d4af37' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+    text-align: center;
+}
+
+/* Boutons */
+.buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.btn {
+    flex: 1;
+    padding: 14px 10px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #1a3a6e, #0d2244);
+    color: #e8d9b5;
+    border: 1px solid #2a4a7e;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: linear-gradient(135deg, #2a4a8e, #1a3a6e);
+    transform: translateY(-2px);
+}
+
+.btn-primary:disabled {
+    background: #2a2a2a;
+    color: #555;
+    cursor: not-allowed;
+    border-color: #333;
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #3d3420, #2a2418);
+    color: #d4af37;
+    border: 1px solid #5a4d30;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #4d4430, #3d3420);
+    transform: translateY(-2px);
+}
+
+.free-note {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 0.9rem;
+    color: #8a7a5c;
+}
+
+@media (max-width: 500px) {
+    .logo {
+        font-size: 1.9rem;
+        letter-spacing: 2px;
+    }
+    .buttons {
+        flex-direction: column;
+    }
+    .card-border {
+        padding: 28px 20px 22px;
+    }
+}
