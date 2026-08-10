@@ -7,59 +7,99 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <div class="carte">
-        <h1>Ochaud Even.ci</h1>
-        <p class="subtitle">Crée des invitations digitales uniques pour tous tes événements</p>
+    <div class="container">
+        <div class="header">
+            <h1>Ochaud Even.ci</h1>
+            <p>Crée des invitations digitales élégantes pour tous tes moments importants</p>
+        </div>
 
-        <form method="POST" action="/create">
-            <label>Type d'événement</label>
-            <select name="event_type" required>
-                <option value="romantique">Rendez-vous romantique</option>
-                <option value="mariage">Mariage</option>
-                <option value="anniversaire">Anniversaire</option>
-                <option value="bapteme">Baptême</option>
-                <option value="autre">Autre événement</option>
-            </select>
+        <div class="carte" id="mainCard">
+            <form method="POST" action="/create" id="inviteForm">
 
-            <label>Titre de l'invitation</label>
-            <input type="text" name="titre" placeholder="Ex : Tu es invité(e) !" required>
+                <!-- Type d'événement -->
+                <div class="form-group">
+                    <label>Type d'événement</label>
+                    <select name="event_type" id="eventType" required onchange="updateForm()">
+                        <option value="">-- Choisis un type --</option>
+                        <option value="romantique">❤️ Rendez-vous Romantique</option>
+                        <option value="mariage">💍 Mariage</option>
+                        <option value="anniversaire">🎂 Anniversaire</option>
+                        <option value="bapteme">🕊️ Baptême</option>
+                        <option value="autre">🎉 Autre événement</option>
+                    </select>
+                </div>
 
-            <label>Prénom / Nom du destinataire</label>
-            <input type="text" name="destinataire" placeholder="Ex : Aya" required>
+                <!-- Champs dynamiques -->
+                <div id="dynamicFields">
+                    <!-- Les champs apparaîtront ici selon le type -->
+                </div>
 
-            <label>Date</label>
-            <input type="date" name="date" required>
+                <button type="submit" class="btn" id="submitBtn" disabled>Générer mon invitation</button>
+            </form>
 
-            <label>Heure</label>
-            <input type="time" name="heure">
-
-            <label>Lieu</label>
-            <input type="text" name="lieu" placeholder="Ex : Restaurant Le Jardin, Cocody">
-
-            <label>Détails / Programme</label>
-            <textarea name="details" placeholder="Ex : Cérémonie à 15h, cocktail à 17h..."></textarea>
-
-            <label>Petit message personnalisé</label>
-            <textarea name="message" placeholder="Ex : J'ai hâte de célébrer ce moment avec toi..."></textarea>
-
-            <label>Lien photo (optionnel)</label>
-            <input type="url" name="photo_url" placeholder="https://...">
-
-            <label>Lien musique MP3 (optionnel)</label>
-            <input type="url" name="musique_url" placeholder="https://...">
-
-            <label>Thème</label>
-            <select name="theme">
-                <option value="classique">Classique Rouge</option>
-                <option value="elegant">Élégant Or</option>
-                <option value="doux">Doux Rose</option>
-                <option value="festif">Festif</option>
-            </select>
-
-            <button type="submit" class="btn">Générer mon invitation</button>
-        </form>
-
-        <p class="info-freemium">Version gratuite : 2 invitations / mois • <a href="/pro">Passer en Pro</a></p>
+            <p class="info-freemium">
+                Version gratuite : 2 invitations / mois • 
+                <a href="/pro">Passer en Pro →</a>
+            </p>
+        </div>
     </div>
-</body>
-</html>
+
+    <script>
+        const fieldsConfig = {
+            romantique: {
+                color: "#d90429",
+                fields: [
+                    { name: "destinataire", label: "Prénom de la personne", placeholder: "Ex : Aya", required: true },
+                    { name: "titre", label: "Titre de l'invitation", placeholder: "Ex : Un moment rien que pour nous", required: true },
+                    { name: "date", label: "Date du rendez-vous", type: "date", required: true },
+                    { name: "heure", label: "Heure", type: "time", required: true },
+                    { name: "lieu", label: "Lieu", placeholder: "Ex : Restaurant Le Petit Jardin", required: true },
+                    { name: "details", label: "Activités prévues", type: "textarea", placeholder: "Ex : Dîner puis balade..." },
+                    { name: "message", label: "Petit mot doux", type: "textarea", placeholder: "Ex : J'ai hâte de te voir..." },
+                    { name: "photo_url", label: "Lien photo (optionnel)", type: "url" },
+                    { name: "musique_url", label: "Lien musique (optionnel)", type: "url" }
+                ]
+            },
+            mariage: {
+                color: "#b8860b",
+                fields: [
+                    { name: "destinataire", label: "Nom des mariés", placeholder: "Ex : Aya & Kouassi", required: true },
+                    { name: "titre", label: "Titre", placeholder: "Ex : Nous nous marions !", required: true },
+                    { name: "date", label: "Date du mariage", type: "date", required: true },
+                    { name: "heure", label: "Heure de la cérémonie", type: "time", required: true },
+                    { name: "lieu", label: "Lieu de la cérémonie", placeholder: "Ex : Église / Mairie / Salle...", required: true },
+                    { name: "details", label: "Programme de la journée", type: "textarea", placeholder: "Ex : 15h Cérémonie - 18h Réception..." },
+                    { name: "message", label: "Message aux invités", type: "textarea", placeholder: "Ex : Votre présence nous ferait très plaisir..." },
+                    { name: "photo_url", label: "Photo des mariés (optionnel)", type: "url" }
+                ]
+            },
+            anniversaire: {
+                color: "#e91e63",
+                fields: [
+                    { name: "destinataire", label: "Prénom de la personne fêtée", placeholder: "Ex : Junior", required: true },
+                    { name: "titre", label: "Titre", placeholder: "Ex : Joyeux Anniversaire !", required: true },
+                    { name: "date", label: "Date de la fête", type: "date", required: true },
+                    { name: "heure", label: "Heure", type: "time", required: true },
+                    { name: "lieu", label: "Lieu de la fête", placeholder: "Ex : Résidence / Salle de fête...", required: true },
+                    { name: "details", label: "Thème / Ambiance", type: "textarea", placeholder: "Ex : Thème noir & or, dress code..." },
+                    { name: "message", label: "Message d'invitation", type: "textarea", placeholder: "Ex : Viens célébrer avec moi..." },
+                    { name: "photo_url", label: "Photo (optionnel)", type: "url" }
+                ]
+            },
+            bapteme: {
+                color: "#1565c0",
+                fields: [
+                    { name: "destinataire", label: "Prénom de l'enfant", placeholder: "Ex : Ethan", required: true },
+                    { name: "titre", label: "Titre", placeholder: "Ex : Baptême de Ethan", required: true },
+                    { name: "date", label: "Date du baptême", type: "date", required: true },
+                    { name: "heure", label: "Heure", type: "time", required: true },
+                    { name: "lieu", label: "Lieu (Église / Temple)", placeholder: "Ex : Paroisse Saint...", required: true },
+                    { name: "details", label: "Informations importantes", type: "textarea", placeholder: "Ex : Réception après la cérémonie..." },
+                    { name: "message", label: "Message aux invités", type: "textarea", placeholder: "Ex : Nous serions honorés de votre présence..." },
+                    { name: "photo_url", label: "Photo de l'enfant (optionnel)", type: "url" }
+                ]
+            },
+            autre: {
+                color: "#2e7d32",
+                fields: [
+                    { name: "destinataire", label: "Destinataire / Invités
