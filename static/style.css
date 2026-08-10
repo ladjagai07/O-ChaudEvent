@@ -1,41 +1,179 @@
-body {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    padding: 30px 15px;
-    color: #333;
-    transition: background 0.6s ease;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-.carte {
-    background: white;
-    border-radius: 20px;
-    padding: 32px 26px;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-    border-top: 5px solid #e0e0e0;
-    transition: border-color 0.4s ease, transform 0.3s ease;
+body {
+    min-height: 100vh;
+    background: #0f0f0f;
+    background-image: 
+        radial-gradient(ellipse at top, #1a1508 0%, transparent 60%),
+        radial-gradient(ellipse at bottom, #1a1008 0%, transparent 60%);
+    font-family: 'Cormorant Garamond', serif;
+    padding: 50px 16px;
+    color: #e8d9b5;
+}
+
+.page {
+    max-width: 540px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.logo {
+    font-family: 'Cinzel', serif;
+    font-size: 2.4rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, #f5e6c8, #d4af37, #f5e6c8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+}
+
+.tagline {
+    font-size: 1.15rem;
+    color: #a89060;
+    letter-spacing: 2px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.card {
+    background: linear-gradient(145deg, #1c1810, #15120b);
+    border-radius: 16px;
+    padding: 40px 32px;
+    border: 1px solid #3d3420;
+    box-shadow: 
+        0 0 0 1px rgba(212, 175, 55, 0.1),
+        0 25px 50px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255, 215, 100, 0.05);
+    position: relative;
+}
+
+.gold-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
 }
 
 .form-group {
-    margin-bottom: 18px;
+    margin-bottom: 24px;
+}
+
+label {
+    display: block;
+    margin-bottom: 9px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #d4af37;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #3d3420;
+    border-radius: 8px;
+    font-size: 1.15rem;
+    font-family: 'Cormorant Garamond', serif;
+    background: #12100a;
+    color: #f0e6d2;
+    transition: all 0.3s ease;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #6b5e45;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #d4af37;
+    background: #18150e;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 95px;
+}
+
+select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23d4af37' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
 }
 
 .btn {
     display: block;
     width: 100%;
     margin-top: 10px;
-    padding: 15px;
+    padding: 16px;
     border: none;
-    border-radius: 50px;
-    background: #ccc;
-    color: white;
-    font-size: 1.05rem;
-    font-weight: 700;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #d4af37, #b8860b);
+    color: #1a1508;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #e8c547, #d4af37);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+}
+
+.btn:disabled {
+    background: #3d3420;
+    color: #6b5e45;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.footer-note {
+    text-align: center;
+    margin-top: 32px;
+    font-size: 0.95rem;
+    color: #7a6b4f;
+}
+
+.footer-note a {
+    color: #d4af37;
+    text-decoration: none;
+    margin-left: 8px;
+    font-weight: 500;
+}
+
+.footer-note a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+    .logo {
+        font-size: 1.9rem;
+        letter-spacing: 2px;
+    }
+    .card {
+        padding: 32px 22px;
+    }
 }
