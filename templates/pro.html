@@ -1,1 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passer en Pro – Ochaud Even.ci</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="carte">
+        <h1>Passe en Pro</h1>
+        <p>Crée des invitations illimitées, sans branding, avec plus de thèmes et le compteur de vues.</p>
 
+        <div class="prix">
+            <h2>2 000 FCFA / mois</h2>
+            <p>ou 1 500 FCFA pour 10 invitations</p>
+        </div>
+
+        <div class="paiement">
+            <h3>Comment payer :</h3>
+            <ol>
+                <li>Envoie <strong>2 000 FCFA</strong> au numéro <strong>07 XX XX XX XX</strong> (Orange Money ou Wave)</li>
+                <li>Mets en référence : <em>ton prénom + Ochaud</em></li>
+                <li>Envoie la capture d’écran sur WhatsApp au même numéro</li>
+                <li>Tu recevras ton code d’activation</li>
+            </ol>
+        </div>
+
+        <form method="POST" action="/activate-pro">
+            <label>Code d’activation</label>
+            <input type="text" name="code" placeholder="Ex : OCHAUD2026" required>
+            <button type="submit" class="btn">Activer mon compte Pro</button>
+        </form>
+
+        <p><a href="/">← Retour</a></p>
+    </div>
+</body>
+</html>
