@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ inv.titre }} – Ochaud Even.ci</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="theme-{{ inv.theme }}">
+    <div class="carte invitation">
+        {% if inv.photo_url %}
+        <img src="{{ inv.photo_url }}" alt="Photo" class="photo-invite">
+        {% endif %}
 
+        <h1>{{ inv.titre }}</h1>
+        <p class="destinataire">Pour <strong>{{ inv.destinataire }}</strong></p>
+
+        <div class="infos">
+            {% if inv.date %}
+            <p>📅 <strong>{{ inv.date }}</strong> {% if inv.heure %}à {{ inv.heure }}{% endif %}</p>
+            {% endif %}
+            {% if inv.lieu %}
+            <p>📍 {{ inv.lieu }}</p>
+            {% endif %}
+        </div>
+
+        {% if inv.details %}
+        <div class="details">
+            <p>{{ inv.details }}</p>
+        </div>
+        {% endif %}
+
+        {% if inv.message %}
+        <div class="message">
+            <p>« {{ inv.message }} »</p>
+        </div>
+        {% endif %}
+
+        {% if inv.musique_url %}
+        <audio controls class="musique">
+            <source src="{{ inv.musique_url }}" type="audio/mpeg">
+        </audio>
+        {% endif %}
+
+        <p class="vues">👁️ {{ inv.views }} vue(s)</p>
+        <p class="branding">Créé avec ❤️ sur <strong>Ochaud Even.ci</strong></p>
+    </div>
+</body>
+</html>
