@@ -5,34 +5,233 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Passer en Pro – Ochaud Even.ci</title>
     <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            min-height: 100vh;
+            padding: 30px 15px;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        .pro-container {
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        .pro-header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .pro-header h1 {
+            font-size: 2rem;
+            color: #222;
+            margin-bottom: 8px;
+        }
+
+        .pro-header p {
+            color: #666;
+            font-size: 1.05rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 24px;
+            padding: 35px 28px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            border-top: 6px solid #d90429;
+            text-align: center;
+        }
+
+        .price {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #d90429;
+            margin: 10px 0 5px;
+        }
+
+        .price span {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .price-sub {
+            color: #888;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+
+        .features {
+            text-align: left;
+            margin: 25px 0 30px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+            font-size: 1.02rem;
+        }
+
+        .feature-icon {
+            width: 26px;
+            height: 26px;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .paiement-box {
+            background: #fff8f0;
+            border: 1px solid #ffe0b2;
+            border-radius: 16px;
+            padding: 22px;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .paiement-box h3 {
+            margin-bottom: 14px;
+            color: #e65100;
+            font-size: 1.1rem;
+        }
+
+        .paiement-box ol {
+            padding-left: 20px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        .paiement-box li {
+            margin-bottom: 8px;
+        }
+
+        .code-form {
+            margin-top: 25px;
+        }
+
+        .code-form input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            text-align: center;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .code-form input:focus {
+            outline: none;
+            border-color: #d90429;
+        }
+
+        .btn-pro {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: #d90429;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .btn-pro:hover {
+            background: #b3001b;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(217, 4, 41, 0.3);
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .back-link:hover {
+            color: #d90429;
+        }
+
+        .note {
+            margin-top: 18px;
+            font-size: 0.85rem;
+            color: #888;
+            line-height: 1.4;
+        }
+    </style>
 </head>
 <body>
-    <div class="carte">
-        <h1>Passe en Pro</h1>
-        <p>Crée des invitations illimitées, sans branding, avec plus de thèmes et le compteur de vues.</p>
-
-        <div class="prix">
-            <h2>2 000 FCFA / mois</h2>
-            <p>ou 1 500 FCFA pour 10 invitations</p>
+    <div class="pro-container">
+        <div class="pro-header">
+            <h1>Passe en Pro</h1>
+            <p>Débloque tout le potentiel d’Ochaud Even.ci</p>
         </div>
 
-        <div class="paiement">
-            <h3>Comment payer :</h3>
-            <ol>
-                <li>Envoie <strong>2 000 FCFA</strong> au numéro <strong>07 XX XX XX XX</strong> (Orange Money ou Wave)</li>
-                <li>Mets en référence : <em>ton prénom + Ochaud</em></li>
-                <li>Envoie la capture d’écran sur WhatsApp au même numéro</li>
-                <li>Tu recevras ton code d’activation</li>
-            </ol>
+        <div class="pricing-card">
+            <div class="price">2 000 <span>FCFA</span></div>
+            <div class="price-sub">par mois • ou 1 500 FCFA pour 10 invitations</div>
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <div>Invitations <strong>illimitées</strong></div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <div>Sans branding « Ochaud Even.ci »</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <div>Tous les thèmes premium</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <div>Compteur de vues détaillé</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <div>Support prioritaire WhatsApp</div>
+                </div>
+            </div>
+
+            <div class="paiement-box">
+                <h3>Comment payer ?</h3>
+                <ol>
+                    <li>Envoie <strong>2 000 FCFA</strong> au numéro :<br>
+                        <strong style="font-size:1.15rem; color:#d90429;">01 72 60 17 57</strong>
+                        <br>(Orange Money ou Wave)
+                    </li>
+                    <li>Mets en référence : <em>ton prénom + Ochaud</em></li>
+                    <li>Envoie la capture d’écran sur WhatsApp au même numéro</li>
+                    <li>Tu recevras ton <strong>code d’activation</strong></li>
+                </ol>
+            </div>
+
+            <form method="POST" action="/activate-pro" class="code-form">
+                <input type="text" name="code" placeholder="Entre ton code d’activation" required>
+                <button type="submit" class="btn-pro">Activer mon compte Pro</button>
+            </form>
+
+            <p class="note">
+                Une fois le code validé, ton compte Pro est activé immédiatement.
+            </p>
         </div>
 
-        <form method="POST" action="/activate-pro">
-            <label>Code d’activation</label>
-            <input type="text" name="code" placeholder="Ex : OCHAUD2026" required>
-            <button type="submit" class="btn">Activer mon compte Pro</button>
-        </form>
-
-        <p><a href="/">← Retour</a></p>
+        <a href="/" class="back-link">← Retour à l’accueil</a>
     </div>
 </body>
 </html>
