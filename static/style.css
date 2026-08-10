@@ -1,41 +1,10 @@
-:root {
-    --main-color: #d90429;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 body {
     min-height: 100vh;
     background: linear-gradient(135deg, #f8f9fa, #e9ecef);
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     padding: 30px 15px;
     color: #333;
-}
-
-.container {
-    max-width: 520px;
-    margin: 0 auto;
-}
-
-.header {
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-.header h1 {
-    font-size: 2.1rem;
-    color: #222;
-    margin-bottom: 8px;
-    font-weight: 700;
-}
-
-.header p {
-    color: #666;
-    font-size: 1rem;
+    transition: background 0.6s ease;
 }
 
 .carte {
@@ -43,43 +12,12 @@ body {
     border-radius: 20px;
     padding: 32px 26px;
     box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-    border-top: 5px solid var(--main-color);
-    transition: border-color 0.3s ease;
+    border-top: 5px solid #e0e0e0;
+    transition: border-color 0.4s ease, transform 0.3s ease;
 }
 
 .form-group {
     margin-bottom: 18px;
-}
-
-label {
-    display: block;
-    margin-bottom: 7px;
-    font-weight: 600;
-    font-size: 0.92rem;
-    color: #444;
-}
-
-input, textarea, select {
-    width: 100%;
-    padding: 13px 15px;
-    border: 1.5px solid #e0e0e0;
-    border-radius: 12px;
-    font-size: 1rem;
-    font-family: inherit;
-    transition: all 0.2s;
-    background: #fafafa;
-}
-
-input:focus, textarea:focus, select:focus {
-    outline: none;
-    border-color: var(--main-color);
-    background: white;
-    box-shadow: 0 0 0 3px rgba(217, 4, 41, 0.1);
-}
-
-textarea {
-    resize: vertical;
-    min-height: 90px;
 }
 
 .btn {
@@ -89,44 +27,15 @@ textarea {
     padding: 15px;
     border: none;
     border-radius: 50px;
-    background: var(--main-color);
+    background: #ccc;
     color: white;
     font-size: 1.05rem;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.25s;
+    transition: all 0.3s ease;
 }
 
 .btn:hover:not(:disabled) {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    filter: brightness(1.05);
-}
-
-.btn:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-}
-
-.info-freemium {
-    text-align: center;
-    margin-top: 22px;
-    font-size: 0.88rem;
-    color: #777;
-}
-
-.info-freemium a {
-    color: var(--main-color);
-    font-weight: 600;
-    text-decoration: none;
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-    .carte {
-        padding: 25px 18px;
-    }
-    .header h1 {
-        font-size: 1.8rem;
-    }
 }
