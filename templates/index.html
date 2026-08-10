@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ochaud Even.ci – Crée ton invitation digitale</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="carte">
+        <h1>Ochaud Even.ci</h1>
+        <p class="subtitle">Crée des invitations digitales uniques pour tous tes événements</p>
 
+        <form method="POST" action="/create">
+            <label>Type d'événement</label>
+            <select name="event_type" required>
+                <option value="romantique">Rendez-vous romantique</option>
+                <option value="mariage">Mariage</option>
+                <option value="anniversaire">Anniversaire</option>
+                <option value="bapteme">Baptême</option>
+                <option value="autre">Autre événement</option>
+            </select>
+
+            <label>Titre de l'invitation</label>
+            <input type="text" name="titre" placeholder="Ex : Tu es invité(e) !" required>
+
+            <label>Prénom / Nom du destinataire</label>
+            <input type="text" name="destinataire" placeholder="Ex : Aya" required>
+
+            <label>Date</label>
+            <input type="date" name="date" required>
+
+            <label>Heure</label>
+            <input type="time" name="heure">
+
+            <label>Lieu</label>
+            <input type="text" name="lieu" placeholder="Ex : Restaurant Le Jardin, Cocody">
+
+            <label>Détails / Programme</label>
+            <textarea name="details" placeholder="Ex : Cérémonie à 15h, cocktail à 17h..."></textarea>
+
+            <label>Petit message personnalisé</label>
+            <textarea name="message" placeholder="Ex : J'ai hâte de célébrer ce moment avec toi..."></textarea>
+
+            <label>Lien photo (optionnel)</label>
+            <input type="url" name="photo_url" placeholder="https://...">
+
+            <label>Lien musique MP3 (optionnel)</label>
+            <input type="url" name="musique_url" placeholder="https://...">
+
+            <label>Thème</label>
+            <select name="theme">
+                <option value="classique">Classique Rouge</option>
+                <option value="elegant">Élégant Or</option>
+                <option value="doux">Doux Rose</option>
+                <option value="festif">Festif</option>
+            </select>
+
+            <button type="submit" class="btn">Générer mon invitation</button>
+        </form>
+
+        <p class="info-freemium">Version gratuite : 2 invitations / mois • <a href="/pro">Passer en Pro</a></p>
+    </div>
+</body>
+</html>
