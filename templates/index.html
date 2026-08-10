@@ -16,10 +16,9 @@
         <div class="carte" id="mainCard">
             <form method="POST" action="/create" id="inviteForm">
 
-                <!-- Type d'événement -->
                 <div class="form-group">
                     <label>Type d'événement</label>
-                    <select name="event_type" id="eventType" required onchange="updateForm()">
+                    <select name="event_type" id="eventType" required>
                         <option value="">-- Choisis un type --</option>
                         <option value="romantique">❤️ Rendez-vous Romantique</option>
                         <option value="mariage">💍 Mariage</option>
@@ -29,12 +28,12 @@
                     </select>
                 </div>
 
-                <!-- Champs dynamiques -->
-                <div id="dynamicFields">
-                    <!-- Les champs apparaîtront ici selon le type -->
-                </div>
+                <!-- Zone des champs dynamiques -->
+                <div id="dynamicFields"></div>
 
-                <button type="submit" class="btn" id="submitBtn" disabled>Générer mon invitation</button>
+                <button type="submit" class="btn" id="submitBtn" disabled>
+                    Générer mon invitation
+                </button>
             </form>
 
             <p class="info-freemium">
@@ -45,6 +44,7 @@
     </div>
 
     <script>
+        // Configuration des champs selon le type
         const fieldsConfig = {
             romantique: {
                 color: "#d90429",
@@ -66,40 +66,4 @@
                     { name: "destinataire", label: "Nom des mariés", placeholder: "Ex : Aya & Kouassi", required: true },
                     { name: "titre", label: "Titre", placeholder: "Ex : Nous nous marions !", required: true },
                     { name: "date", label: "Date du mariage", type: "date", required: true },
-                    { name: "heure", label: "Heure de la cérémonie", type: "time", required: true },
-                    { name: "lieu", label: "Lieu de la cérémonie", placeholder: "Ex : Église / Mairie / Salle...", required: true },
-                    { name: "details", label: "Programme de la journée", type: "textarea", placeholder: "Ex : 15h Cérémonie - 18h Réception..." },
-                    { name: "message", label: "Message aux invités", type: "textarea", placeholder: "Ex : Votre présence nous ferait très plaisir..." },
-                    { name: "photo_url", label: "Photo des mariés (optionnel)", type: "url" }
-                ]
-            },
-            anniversaire: {
-                color: "#e91e63",
-                fields: [
-                    { name: "destinataire", label: "Prénom de la personne fêtée", placeholder: "Ex : Junior", required: true },
-                    { name: "titre", label: "Titre", placeholder: "Ex : Joyeux Anniversaire !", required: true },
-                    { name: "date", label: "Date de la fête", type: "date", required: true },
-                    { name: "heure", label: "Heure", type: "time", required: true },
-                    { name: "lieu", label: "Lieu de la fête", placeholder: "Ex : Résidence / Salle de fête...", required: true },
-                    { name: "details", label: "Thème / Ambiance", type: "textarea", placeholder: "Ex : Thème noir & or, dress code..." },
-                    { name: "message", label: "Message d'invitation", type: "textarea", placeholder: "Ex : Viens célébrer avec moi..." },
-                    { name: "photo_url", label: "Photo (optionnel)", type: "url" }
-                ]
-            },
-            bapteme: {
-                color: "#1565c0",
-                fields: [
-                    { name: "destinataire", label: "Prénom de l'enfant", placeholder: "Ex : Ethan", required: true },
-                    { name: "titre", label: "Titre", placeholder: "Ex : Baptême de Ethan", required: true },
-                    { name: "date", label: "Date du baptême", type: "date", required: true },
-                    { name: "heure", label: "Heure", type: "time", required: true },
-                    { name: "lieu", label: "Lieu (Église / Temple)", placeholder: "Ex : Paroisse Saint...", required: true },
-                    { name: "details", label: "Informations importantes", type: "textarea", placeholder: "Ex : Réception après la cérémonie..." },
-                    { name: "message", label: "Message aux invités", type: "textarea", placeholder: "Ex : Nous serions honorés de votre présence..." },
-                    { name: "photo_url", label: "Photo de l'enfant (optionnel)", type: "url" }
-                ]
-            },
-            autre: {
-                color: "#2e7d32",
-                fields: [
-                    { name: "destinataire", label: "Destinataire / Invités
+                    { name: "heure", label: "Heure de la
