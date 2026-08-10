@@ -6,10 +6,10 @@
 
 body {
     min-height: 100vh;
-    background: linear-gradient(165deg, #1a1710 0%, #241f15 40%, #1e1a12 100%);
+    background: linear-gradient(165deg, #a3a381 0%, #95946f 50%, #8a8965 100%);
     font-family: 'Cormorant Garamond', serif;
     padding: 50px 16px;
-    color: #e8d9b5;
+    color: #3d3420;
 }
 
 .page {
