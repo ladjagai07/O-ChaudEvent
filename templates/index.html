@@ -9,37 +9,42 @@
 </head>
 <body>
     <div class="page">
+        <!-- Logo / En-tête -->
         <div class="header">
-            <div class="logo">Ochaud Even.ci</div>
-            <p class="tagline">Invitations d’exception</p>
+            <div class="crest">
+                <div class="crest-icon">✧</div>
+            </div>
+            <h1 class="logo">OCHAUD EVEN.CI</h1>
+            <p class="tagline">Créateur d'Invitations d'Exception pour vos Moments Précieux</p>
         </div>
 
+        <!-- Carte principale -->
         <div class="card" id="mainCard">
-            <div class="gold-line"></div>
-            
-            <form method="POST" action="/create" id="inviteForm">
-                <div class="form-group">
-                    <label>Type d’événement</label>
-                    <select name="event_type" id="eventType" required>
-                        <option value="">— Sélectionnez —</option>
-                        <option value="romantique">Rendez-vous Romantique</option>
-                        <option value="mariage">Mariage</option>
-                        <option value="anniversaire">Anniversaire</option>
-                        <option value="bapteme">Baptême</option>
-                        <option value="autre">Autre événement</option>
-                    </select>
-                </div>
+            <div class="card-border">
+                <form method="POST" action="/create" id="inviteForm">
+                    <div class="form-group">
+                        <label>TYPE D'ÉVÉNEMENT</label>
+                        <select name="event_type" id="eventType" required>
+                            <option value="">— Sélectionner un Type de Cérémonie Royale —</option>
+                            <option value="romantique">Rendez-vous Romantique</option>
+                            <option value="mariage">Mariage</option>
+                            <option value="anniversaire">Anniversaire</option>
+                            <option value="bapteme">Baptême</option>
+                            <option value="autre">Autre événement</option>
+                        </select>
+                    </div>
 
-                <div id="dynamicFields"></div>
+                    <div id="dynamicFields"></div>
 
-                <button type="submit" class="btn" id="submitBtn" disabled>
-                    Créer l’invitation
-                </button>
-            </form>
+                    <div class="buttons">
+                        <button type="submit" class="btn btn-primary" id="submitBtn" disabled>
+                            Créer l'Invitation
+                        </button>
+                        <a href="/pro" class="btn btn-secondary">Passer en Pro</a>
+                    </div>
+                </form>
 
-            <div class="footer-note">
-                Version gratuite · 2 invitations / mois
-                <a href="/pro">Passer en Pro</a>
+                <p class="free-note">Version gratuite · 2 invitations / mois</p>
             </div>
         </div>
     </div>
@@ -47,21 +52,19 @@
     <script>
         const configs = {
             romantique: {
-                accent: "#c9a227",
                 fields: [
                     {name:"destinataire", label:"Prénom de la personne", placeholder:"Ex : Aya", required:true},
-                    {name:"titre", label:"Titre de l’invitation", placeholder:"Ex : Un moment rien que pour nous", required:true},
+                    {name:"titre", label:"Titre de l'invitation", placeholder:"Ex : Un moment rien que pour nous", required:true},
                     {name:"date", label:"Date", type:"date", required:true},
                     {name:"heure", label:"Heure", type:"time", required:true},
                     {name:"lieu", label:"Lieu", placeholder:"Ex : Restaurant Le Petit Jardin", required:true},
-                    {name:"details", label:"Activités prévues", type:"textarea", placeholder:"Ex : Dîner puis balade..."},
-                    {name:"message", label:"Petit mot doux", type:"textarea", placeholder:"Ex : J’ai hâte de te voir..."},
+                    {name:"details", label:"Activités prévues", type:"textarea"},
+                    {name:"message", label:"Petit mot doux", type:"textarea"},
                     {name:"photo_url", label:"Lien photo (optionnel)", type:"url"},
                     {name:"musique_url", label:"Lien musique (optionnel)", type:"url"}
                 ]
             },
             mariage: {
-                accent: "#d4af37",
                 fields: [
                     {name:"destinataire", label:"Noms des mariés", placeholder:"Ex : Aya & Kouassi", required:true},
                     {name:"titre", label:"Titre", placeholder:"Ex : Nous nous marions", required:true},
@@ -74,7 +77,6 @@
                 ]
             },
             anniversaire: {
-                accent: "#c9a227",
                 fields: [
                     {name:"destinataire", label:"Prénom de la personne", placeholder:"Ex : Junior", required:true},
                     {name:"titre", label:"Titre", placeholder:"Ex : Joyeux Anniversaire", required:true},
@@ -87,9 +89,8 @@
                 ]
             },
             bapteme: {
-                accent: "#b8860b",
                 fields: [
-                    {name:"destinataire", label:"Prénom de l’enfant", placeholder:"Ex : Ethan", required:true},
+                    {name:"destinataire", label:"Prénom de l'enfant", placeholder:"Ex : Ethan", required:true},
                     {name:"titre", label:"Titre", placeholder:"Ex : Baptême de Ethan", required:true},
                     {name:"date", label:"Date", type:"date", required:true},
                     {name:"heure", label:"Heure", type:"time", required:true},
@@ -100,10 +101,9 @@
                 ]
             },
             autre: {
-                accent: "#c9a227",
                 fields: [
                     {name:"destinataire", label:"Destinataire", placeholder:"Ex : Chers amis", required:true},
-                    {name:"titre", label:"Titre de l’événement", placeholder:"Ex : Soirée / Réunion", required:true},
+                    {name:"titre", label:"Titre de l'événement", placeholder:"Ex : Soirée / Réunion", required:true},
                     {name:"date", label:"Date", type:"date", required:true},
                     {name:"heure", label:"Heure", type:"time"},
                     {name:"lieu", label:"Lieu", placeholder:"Adresse", required:true},
@@ -126,14 +126,12 @@
                 return;
             }
 
-            const config = configs[type];
-
-            config.fields.forEach(field => {
+            configs[type].fields.forEach(field => {
                 const div = document.createElement("div");
                 div.className = "form-group";
 
                 const label = document.createElement("label");
-                label.textContent = field.label;
+                label.textContent = field.label.toUpperCase();
                 div.appendChild(label);
 
                 let input;
@@ -152,19 +150,6 @@
                 div.appendChild(input);
                 container.appendChild(div);
             });
-
-            const themeDiv = document.createElement("div");
-            themeDiv.className = "form-group";
-            themeDiv.innerHTML = `
-                <label>Style de l’invitation</label>
-                <select name="theme">
-                    <option value="royal">Royal</option>
-                    <option value="elegant">Élégant</option>
-                    <option value="classique">Classique</option>
-                    <option value="moderne">Moderne</option>
-                </select>
-            `;
-            container.appendChild(themeDiv);
 
             btn.disabled = false;
         }
