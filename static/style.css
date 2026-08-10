@@ -1,3 +1,7 @@
+:root {
+    --main-color: #d90429;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,188 +10,123 @@
 
 body {
     min-height: 100vh;
-    background: linear-gradient(135deg, #fff5f5, #ffe8e8);
-    font-family: 'Segoe UI', system-ui, sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    padding: 30px 15px;
     color: #333;
+}
+
+.container {
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.header h1 {
+    font-size: 2.1rem;
+    color: #222;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.header p {
+    color: #666;
+    font-size: 1rem;
 }
 
 .carte {
     background: white;
     border-radius: 20px;
-    padding: 35px 28px;
-    max-width: 480px;
-    width: 100%;
-    box-shadow: 0 15px 40px rgba(217, 4, 41, 0.12);
-    border: 1px solid #ffe0e3;
+    padding: 32px 26px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    border-top: 5px solid var(--main-color);
+    transition: border-color 0.3s ease;
 }
 
-h1 {
-    color: #d90429;
-    font-size: 1.9rem;
-    margin-bottom: 8px;
-    text-align: center;
-}
-
-.subtitle {
-    text-align: center;
-    color: #666;
-    margin-bottom: 25px;
-    font-size: 0.95rem;
+.form-group {
+    margin-bottom: 18px;
 }
 
 label {
     display: block;
-    margin-top: 16px;
-    margin-bottom: 6px;
+    margin-bottom: 7px;
     font-weight: 600;
-    color: #b3001b;
-    font-size: 0.9rem;
+    font-size: 0.92rem;
+    color: #444;
 }
 
 input, textarea, select {
     width: 100%;
-    padding: 12px 14px;
-    border: 1.5px solid #f1b0b7;
+    padding: 13px 15px;
+    border: 1.5px solid #e0e0e0;
     border-radius: 12px;
     font-size: 1rem;
     font-family: inherit;
-    outline: none;
-    transition: border 0.2s;
+    transition: all 0.2s;
+    background: #fafafa;
 }
 
 input:focus, textarea:focus, select:focus {
-    border-color: #d90429;
+    outline: none;
+    border-color: var(--main-color);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(217, 4, 41, 0.1);
 }
 
 textarea {
-    min-height: 80px;
     resize: vertical;
+    min-height: 90px;
 }
 
 .btn {
     display: block;
     width: 100%;
-    margin-top: 28px;
-    padding: 14px;
+    margin-top: 10px;
+    padding: 15px;
     border: none;
     border-radius: 50px;
-    background: #d90429;
+    background: var(--main-color);
     color: white;
     font-size: 1.05rem;
     font-weight: 700;
     cursor: pointer;
-    transition: 0.2s;
+    transition: all 0.25s;
 }
 
-.btn:hover {
-    background: #b3001b;
+.btn:hover:not(:disabled) {
     transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    filter: brightness(1.05);
+}
+
+.btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
 }
 
 .info-freemium {
     text-align: center;
-    margin-top: 20px;
-    font-size: 0.85rem;
-    color: #888;
+    margin-top: 22px;
+    font-size: 0.88rem;
+    color: #777;
 }
 
 .info-freemium a {
-    color: #d90429;
+    color: var(--main-color);
     font-weight: 600;
+    text-decoration: none;
 }
 
-/* Page invitation */
-.invitation {
-    text-align: center;
-}
-
-.photo-invite {
-    width: 100%;
-    max-height: 220px;
-    object-fit: cover;
-    border-radius: 16px;
-    margin-bottom: 20px;
-}
-
-.destinataire {
-    font-size: 1.15rem;
-    margin: 12px 0 20px;
-}
-
-.infos p {
-    margin: 8px 0;
-    font-size: 1.05rem;
-}
-
-.details, .message {
-    margin: 20px 0;
-    padding: 15px;
-    background: #fff5f5;
-    border-radius: 12px;
-    font-style: italic;
-}
-
-.vues {
-    margin-top: 25px;
-    font-size: 0.9rem;
-    color: #888;
-}
-
-.branding {
-    margin-top: 10px;
-    font-size: 0.8rem;
-    color: #aaa;
-}
-
-.musique {
-    width: 100%;
-    margin-top: 15px;
-}
-
-/* Thèmes simples */
-.theme-elegant {
-    background: linear-gradient(135deg, #fffdf5, #fff8e7);
-}
-.theme-elegant .carte {
-    border-color: #d4af37;
-}
-.theme-elegant h1 {
-    color: #b8860b;
-}
-
-.theme-doux {
-    background: linear-gradient(135deg, #fff0f5, #ffe4ec);
-}
-.theme-doux h1 {
-    color: #c2185b;
-}
-
-.theme-festif {
-    background: linear-gradient(135deg, #f0fff4, #e6fffa);
-}
-.theme-festif h1 {
-    color: #2e7d32;
-}
-
-.prix {
-    text-align: center;
-    margin: 25px 0;
-    padding: 20px;
-    background: #fff5f5;
-    border-radius: 16px;
-}
-
-.paiement {
-    text-align: left;
-    margin: 25px 0;
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-
-.paiement ol {
-    padding-left: 20px;
+/* Responsive */
+@media (max-width: 480px) {
+    .carte {
+        padding: 25px 18px;
+    }
+    .header h1 {
+        font-size: 1.8rem;
+    }
 }
